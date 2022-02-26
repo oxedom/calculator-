@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlsComponent implements OnInit {
 
+ lastPressed : string = ""
+
+
+  pressNumber(numberPressed : string) {
+
+    console.log(numberPressed)
+
+  }
+
   constructor() { }
 
   ngOnInit(): void {

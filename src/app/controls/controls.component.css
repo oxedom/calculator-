@@ -1,11 +1,11 @@
-
+div { background-color: lightblue;}
 
 .nums 
 {
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
+
 }
 
 button {
