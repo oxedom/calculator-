@@ -1,36 +1,55 @@
 button 
 {
-  margin: 2px;
-  padding: 10px;
+margin: 0.1rem;
+padding: 10px;
+background-color: lightblue;
+box-shadow: 2px 1px rgb(0, 217, 255);
+border-radius: 50%;
 }
 
-
-.display 
-{ background-color: lightgreen;
-  margin: 10px;
-  padding: 2px;
-}
-
-.controls 
+.calculator 
 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  flex-direction: column;
-}
+display: flex;
+justify-content: center;
 
-.controls *
+}
+.display 
 { 
+  align-self: flex-end;
+  display: flex;
 
-
-
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 2px;
 }
+
 .center 
 {
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: 8px 3px rgb(57, 155, 247);
+  background-color: rgb(179, 245, 223);
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start
  }
 
+ .controls 
+ {
+   display: flex;
+   flex-direction: column;
+ }
 
+ .controls > div 
+ {
+   display: flex ;
+ }
+
+ .controls > div * 
+ {
+   flex: 1;
+ }
+.cButton 
+{
+/* display: flex;
+align-items:stretch; */
+}
