@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LogicService } from '../logic.service';
 
 @Component({
   selector: 'app-calc',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalcComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logic : LogicService) { }
 
   //Display String (What is shown on the frontend)
   currentDisplayString: string = '0'
@@ -16,25 +17,25 @@ export class CalcComponent implements OnInit {
   currentValue : number = 0
 
   //Number that has been most recently pressed
-  currentNumber : any = ""
+  currentNumber : string = ""
 
   //Number that was last pressed (can overlap with current Number on First Press)
-  prevPressed : any = ""
+  prevPressed : string = ""
 
   //A Var that is used to store which Var was pressed before waiting for secound number
   opPressed : any = ""
   waitForSecoundNumber: boolean = false;
 
 
-  appendNumber(numberPressed : number) 
+  appendNumber(numberPressed : string) 
   {
-  this.currentNumber = this.currentNumber.toString() + numberPressed.toString()
+  this.currentNumber = this.currentNumber + numberPressed
   this.prevPressed = this.currentNumber
   this. currentDisplayString = this.currentNumber
   return this.currentNumber
   }
 
-  pressNumber(numberPressed : number) {
+  pressNumber(numberPressed : string) {
     
     if(!this.waitForSecoundNumber) 
     {
@@ -49,26 +50,63 @@ export class CalcComponent implements OnInit {
   }
 
   operator(op : string) 
-  {
-    this.setDisplayString('0')
-    this.currentNumber = ''
-    if(op != '=') {  this.opPressed = op;}
-    console.log(this.opPressed)
-    this.waitForSecoundNumber = true
-  
-    if(op == "=")
-     switch(this.opPressed) 
-     {
-      case 'x': {console.log(this.currentNumber)           } 
-      break;
+  {  
+    console.log(`the op that was pressed is ${op}`)
 
-      case '/': console.log('big fat /')
+    if(op != '=') {  
+    this.currentNumber = ''
+    this.setDisplayString('---')
+    this.opPressed = op;}
+    this.waitForSecoundNumber = !this.waitForSecoundNumber
+  
+    if(op == "=") 
+    {
+      
+      switch(this.opPressed) 
+     {
+      case 'x': 
+      {
+        let answer =  this.logic.multi(this.prevPressed, this.currentNumber)
+        this.prevPressed = answer
+        this.currentDisplayString = answer
+
+        this.currentNumber = ''
+        this.opPressed = ''
+      } 
       break;
-      case '*':
+      case '/': 
+      {
+        let answer =  this.logic.divide(this.prevPressed, this.currentNumber)
+        this.prevPressed = answer
+        this.currentDisplayString = answer
+
+        this.currentNumber = ''
+        this.opPressed = ''
+      }
       break;
-      case '-':
+      case '+': 
+      {
+        let answer =  this.logic.add(this.prevPressed, this.currentNumber)
+        this.prevPressed = answer
+        this.currentDisplayString = answer
+        this.currentNumber = ''
+        this.opPressed = ''
+      }
+      break;
+      case '-': 
+      {
+        let answer =  this.logic.subtract(this.prevPressed, this.currentNumber)
+        this.prevPressed = answer
+        this.currentDisplayString = answer
+        this.currentNumber = ''
+        this.opPressed = ''
+      }
       break;
     }
+
+    }
+
+     
 
   }
 
@@ -85,13 +123,6 @@ export class CalcComponent implements OnInit {
 
   }
 
-  add(a : number, b : number) { return a + b }
-
-  subtract(a : number, b : number) { return a -b }
-
-  multi(a : number, b : number) { return a  * b  }
-
-  divide(a : number, b : number) { return a / b }
 
   ngOnInit(): void {
   }
