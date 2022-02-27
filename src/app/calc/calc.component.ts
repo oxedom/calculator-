@@ -55,7 +55,7 @@ export class CalcComponent implements OnInit {
     {
       this.currentNumber = this.currentNumber.toString() + '.' 
       this.currentDisplayString = this.currentNumber
-      this.prevPressed = this.currentNumber
+     
     }
    
   }
@@ -64,61 +64,69 @@ export class CalcComponent implements OnInit {
   {  
 
     console.log(`the op that was pressed is ${op}`)
-
-    if(op != '=') {  
-    this.currentNumber = ''
-    this.setDisplayString('---')
-    this.opPressed = op;}
-    this.waitForSecoundNumber = !this.waitForSecoundNumber
-  
-    if(op == "=")
+    if(op == '-' && this.currentNumber == '') 
     {
+    
+     this.currentNumber = '-'
+      this.currentDisplayString = '-'
+    }
+    else  
+    {
+      if(op != '=') {  
+        this.currentNumber = ''
+        this.setDisplayString('---')
+        this.opPressed = op;}
+        this.waitForSecoundNumber = !this.waitForSecoundNumber
       
-      switch(this.opPressed) 
-     {
-      case 'x': 
-      {
-        let answer =  this.logic.multi(this.prevPressed, this.currentNumber)
-        this.prevPressed = answer
-        this.currentDisplayString = answer
-
-        this.currentNumber = ''
-        this.opPressed = ''
-      } 
-      break;
-      case '/': 
-      {
-        let answer =  this.logic.divide(this.prevPressed, this.currentNumber)
-        this.prevPressed = answer
-        this.currentDisplayString = answer
-
-        this.currentNumber = ''
-        this.opPressed = ''
-      }
-      break;
-      case '+': 
-      {
-        let answer =  this.logic.add(this.prevPressed, this.currentNumber)
-        this.prevPressed = answer
-        this.currentDisplayString = answer
-        this.currentNumber = ''
-        this.opPressed = ''
-      }
-      break;
-      case '-': 
-      {
-  
-        let answer =  this.logic.subtract(this.prevPressed, this.currentNumber)
-        this.prevPressed = answer
-        this.currentDisplayString = answer
-        this.currentNumber = ''
-        this.opPressed = ''
-      }
-      break;
+        if(op == "=")
+        {
+          
+          switch(this.opPressed) 
+         {
+          case 'x': 
+          {
+            let answer =  this.logic.multi(this.prevPressed, this.currentNumber)
+            this.prevPressed = answer
+            this.currentDisplayString = answer
+    
+            this.currentNumber = ''
+            this.opPressed = ''
+          } 
+          break;
+          case '/': 
+          {
+            let answer =  this.logic.divide(this.prevPressed, this.currentNumber)
+            this.prevPressed = answer
+            this.currentDisplayString = answer
+    
+            this.currentNumber = ''
+            this.opPressed = ''
+          }
+          break;
+          case '+': 
+          {
+            let answer =  this.logic.add(this.prevPressed, this.currentNumber)
+            this.prevPressed = answer
+            this.currentDisplayString = answer
+            this.currentNumber = ''
+            this.opPressed = ''
+          }
+          break;
+          case '-': 
+          {
+      
+            let answer =  this.logic.subtract(this.prevPressed, this.currentNumber)
+            this.prevPressed = answer
+            this.currentDisplayString = answer
+            this.currentNumber = ''
+            this.opPressed = ''
+          }
+          break;
+        }
+    
+        }
     }
-
-    }
-
+    
      
 
   }
