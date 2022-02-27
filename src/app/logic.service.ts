@@ -10,30 +10,30 @@ export class LogicService {
  
   public add(a : string, b : string) { 
     let result = 0
-    let aNumber = parseInt(a)
-    let bNumber = parseInt(b)
+    let aNumber = parseFloat(a)
+    let bNumber = parseFloat(b)
     result = aNumber + bNumber
     return result.toString() }
 
   public subtract(a : string, b : string) { 
     let result = 0
-    let aNumber = parseInt(a)
-    let bNumber = parseInt(b)
+    let aNumber = parseFloat(a)
+    let bNumber = parseFloat(b)
     result = aNumber - bNumber
     return result.toString() }
 
     public multi(a : string, b : string) { 
     let result = 0
-    let aNumber = parseInt(a)
-    let bNumber = parseInt(b)
+    let aNumber = parseFloat(a)
+    let bNumber = parseFloat(b)
     result = aNumber * bNumber
     return result.toString() }
 
 
     public divide(a : string, b : string) { 
     let result = 0
-    let aNumber = parseInt(a)
-    let bNumber = parseInt(b)
+    let aNumber = parseFloat(a)
+    let bNumber = parseFloat(b)
     result = aNumber / bNumber
     return result.toString() }
 

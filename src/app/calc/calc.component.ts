@@ -49,8 +49,20 @@ export class CalcComponent implements OnInit {
     
   }
 
+  addDecimal() 
+  {
+    if(!this.currentNumber.endsWith('.'))
+    {
+      this.currentNumber = this.currentNumber.toString() + '.' 
+      this.currentDisplayString = this.currentNumber
+      this.prevPressed = this.currentNumber
+    }
+   
+  }
+
   operator(op : string) 
   {  
+
     console.log(`the op that was pressed is ${op}`)
 
     if(op != '=') {  
@@ -59,7 +71,7 @@ export class CalcComponent implements OnInit {
     this.opPressed = op;}
     this.waitForSecoundNumber = !this.waitForSecoundNumber
   
-    if(op == "=") 
+    if(op == "=")
     {
       
       switch(this.opPressed) 
@@ -95,6 +107,7 @@ export class CalcComponent implements OnInit {
       break;
       case '-': 
       {
+  
         let answer =  this.logic.subtract(this.prevPressed, this.currentNumber)
         this.prevPressed = answer
         this.currentDisplayString = answer
