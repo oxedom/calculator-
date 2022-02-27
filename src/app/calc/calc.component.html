@@ -1,11 +1,40 @@
 <div class="center">
-<div class="container">
-    <div class="leftDisplay">
-        <app-display></app-display>
+
+<div class="display">
+    {{currentDisplayString}}
+</div>
+
+
+
+
+<div class="controls">
+    <div>
+        <button (click)="pressNumber('1')">1</button >
+        <button (click)="pressNumber('2')">2</button >
+        <button (click)="pressNumber('3')">3</button >
+        <button >X</button>
+    </div>
+    <div>
+        <button (click)="pressNumber('4')">4</button >
+        <button (click)="pressNumber('5')">5</button > 
+        <button (click)="pressNumber('6')">6</button >
+        <button >/</button>
+    </div>
+    <div>
+        <button (click)="pressNumber('7')">7</button >
+        <button (click)="pressNumber('8')">8</button >
+        <button (click)="pressNumber('9')">9</button >
+        <button>+</button>
+    </div>
+    
+    <div>
+        <button >.</button >
+        <button >0</button >
+        <button >=</button>
+        <button >-</button>
+        <button >C</button>    
     </div>
 
-    <div>
-        <app-controls></app-controls>
-    </div>
+
 </div>
 </div>

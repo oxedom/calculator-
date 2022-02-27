@@ -1,19 +1,36 @@
-.container 
+button 
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: aliceblue;
+  margin: 2px;
+  padding: 10px;
+}
+
+
+.display 
+{ background-color: lightgreen;
+  margin: 10px;
+  padding: 2px;
+}
+
+.controls 
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.controls *
+{ 
+
+
+
+}
+.center 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
  }
 
- .center 
- {
-     display: flex;
-     justify-content: center;
 
-  }
-
-  .leftDisplay 
-  {
-    align-self: flex-start;
-  }

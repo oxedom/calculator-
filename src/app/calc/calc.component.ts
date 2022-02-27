@@ -9,6 +9,15 @@ export class CalcComponent implements OnInit {
 
   constructor() { }
 
+  currentDisplayString: string = "0"
+  
+  pressNumber(numberPressed : string) {
+
+    console.log(numberPressed)
+
+  }
+
+
   ngOnInit(): void {
   }
 
