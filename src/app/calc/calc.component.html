@@ -1,54 +1,65 @@
-<div class="calculator">
+<body>
+    
+    <div class="calculator">
 
-    <div class="center">
-
-        <div class="display">
-           <span>  {{currentNumber}}</span> 
-        </div>
-        
+        <div class="center">
+    
         
     
-        <div class="controls">
-            <div>
-                <button (click)="pressNumber('1')">1</button >
-                <button (click)="pressNumber('2')">2</button >
-                <button (click)="pressNumber('3')">3</button >
-                <button (click)="calculate('x')" >X</button>
-            </div>
-            <div>
-                <button (click)="pressNumber('4')">4</button >
-                <button (click)="pressNumber('5')">5</button > 
-                <button (click)="pressNumber('6')">6</button >
-                <button (click)="calculate('/')">/</button>
-            </div>
-            <div>
-                <button (click)="pressNumber('7')">7</button >
-                <button (click)="pressNumber('8')">8</button >
-                <button (click)="pressNumber('9')">9</button >
-                <button (click)="calculate('+')" >+</button>
-            </div>
             
-            <div>
-                <button (click)="addDecimal()">.</button >
-                <button (click)="pressNumber('0')">0</button >
-                <button (click)="calculate('=')">=</button>
-                <button (click)="calculate('-')">-</button> 
+        
+            <div class="controls">
+    
+                
+                <div class="screen">
+                    <div class="display">
+                    <span  > {{currentNumber}}</span>
+                    </div>   
+                 </div>
+    
+                <div>
+                    <button class="number" (click)="pressNumber('1')">1</button >
+                    <button class="number" (click)="pressNumber('2')">2</button >
+                    <button class="number" (click)="pressNumber('3')">3</button >
+                    <button (click)="calculate('x')" >X</button>
+                </div>
+                <div>
+                    <button class="number" (click)="pressNumber('4')">4</button >
+                    <button class="number" (click)="pressNumber('5')">5</button > 
+                    <button class="number" (click)="pressNumber('6')">6</button >
+                    <button (click)="calculate('/')">/</button>
+                </div>
+                <div>
+                    <button class="number" (click)="pressNumber('7')">7</button >
+                    <button class="number" (click)="pressNumber('8')">8</button >
+                    <button class="number" (click)="pressNumber('9')">9</button >
+                    <button (click)="calculate('+')" >+</button>
+                </div>
+                
+                <div>
+                    <button (click)="addDecimal()">.</button >
+                    <button class="number"  (click)="pressNumber('0')">0</button >
+                    <button (click)="calculate('=')">=</button>
+                    <button (click)="calculate('-')">-</button> 
+                </div>
+            
+                <div class="cButton">
+                    <button (click)="clear()">C</button>   
+                </div>
+                 
+              
+            </div>
             </div>
         
-            <div class="cButton">
-                <button (click)="clear()">C</button>   
-            </div>
-             
-          
-        </div>
-        </div>
+    </div>
     
-</div>
+    <div>
+        <!-- current number: {{currentNumber}} <br>
+        prev presssed:  {{prevPressed}} <br>
+        last op: {{opPressed}} -->
+    
+    
+    </div>
+    
+</body>
 
-<div>
-    current number: {{currentNumber}} <br>
-    prev presssed:  {{prevPressed}} <br>
-    last op: {{opPressed}}
-
-
-</div>
