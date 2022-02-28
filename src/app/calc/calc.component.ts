@@ -10,140 +10,70 @@ export class CalcComponent implements OnInit {
 
   constructor(private logic : LogicService) { }
 
-  //Display String (What is shown on the frontend)
-  currentDisplayString: string = '0'
-
-  //Display String (Current Value insie the comps Memory)
-  currentValue : number = 0
-
   //Number that has been most recently pressed
-  currentNumber : string = ""
+  currentNumber : string = '0'
 
   //Number that was last pressed (can overlap with current Number on First Press)
-  prevPressed : string = ""
+  prevPressed : string = ''
 
-  //A Var that is used to store which Var was pressed before waiting for secound number
-  opPressed : any = ""
-  waitForSecoundNumber: boolean = false;
+  //A Var that is used to store which OP was pressed before waiting for secound number
+  opPressed : string = '' 
+  //
+  waitForOther : boolean = false
 
-
-  appendNumber(numberPressed : string) 
+  pressNumber(paraNumber : string) 
   {
-  this.currentNumber = this.currentNumber + numberPressed
-  this.prevPressed = this.currentNumber
-  this. currentDisplayString = this.currentNumber
-  return this.currentNumber
+    if(this.currentNumber == '0') { this.currentNumber = ''}
+    this.currentNumber += paraNumber
   }
-
-  pressNumber(numberPressed : string) {
-    
-    if(!this.waitForSecoundNumber) 
+  calculate(paraOp : string) 
+  {
+    if(this.currentNumber == '0' && paraOp == '-') 
     {
-      this.appendNumber(numberPressed)
+      this.currentNumber = '-' 
     }
     else 
     {
-      this.currentNumber = this.currentNumber.toString() + numberPressed.toString()
-      this. currentDisplayString = this.currentNumber
+      if(this.currentNumber != '' && this.prevPressed != '' ) 
+    {
+      switch (this.opPressed) {
+        case '+': { this.currentNumber = this.logic.add(this.prevPressed, this.currentNumber) }
+          break;
+        case '-': { this.currentNumber = this.logic.subtract(this.prevPressed, this.currentNumber)}
+          break;
+        case 'x': { this.currentNumber = this.logic.multi(this.prevPressed, this.currentNumber)}
+          break;
+        case '/': {  this.currentNumber = this.logic.divide(this.prevPressed, this.currentNumber)}
+          break;  
+      }
+      this.opPressed = ''
+      this.prevPressed = ''
+    }
+    else 
+    {
+      this.opPressed = paraOp
+      this.prevPressed = this.currentNumber
+      this.currentNumber = '0'
+    }
     }
     
+    
   }
-
   addDecimal() 
-  {
-    if(!this.currentNumber.endsWith('.'))
+  { 
+    if(!this.currentNumber.includes('.')) 
     {
-      this.currentNumber = this.currentNumber.toString() + '.' 
-      this.currentDisplayString = this.currentNumber
-     
+      this.currentNumber += '.'
     }
-   
+    console.log('cant add more dec')
   }
-
-  operator(op : string) 
-  {  
-
-    console.log(`the op that was pressed is ${op}`)
-    if(op == '-' && this.currentNumber == '') 
-    {
-    
-     this.currentNumber = '-'
-      this.currentDisplayString = '-'
-    }
-    else  
-    {
-      if(op != '=') {  
-        this.currentNumber = ''
-        this.setDisplayString('---')
-        this.opPressed = op;}
-        this.waitForSecoundNumber = !this.waitForSecoundNumber
-      
-        if(op == "=")
-        {
-          
-          switch(this.opPressed) 
-         {
-          case 'x': 
-          {
-            let answer =  this.logic.multi(this.prevPressed, this.currentNumber)
-            this.prevPressed = answer
-            this.currentDisplayString = answer
-    
-            this.currentNumber = ''
-            this.opPressed = ''
-          } 
-          break;
-          case '/': 
-          {
-            let answer =  this.logic.divide(this.prevPressed, this.currentNumber)
-            this.prevPressed = answer
-            this.currentDisplayString = answer
-    
-            this.currentNumber = ''
-            this.opPressed = ''
-          }
-          break;
-          case '+': 
-          {
-            let answer =  this.logic.add(this.prevPressed, this.currentNumber)
-            this.prevPressed = answer
-            this.currentDisplayString = answer
-            this.currentNumber = ''
-            this.opPressed = ''
-          }
-          break;
-          case '-': 
-          {
-      
-            let answer =  this.logic.subtract(this.prevPressed, this.currentNumber)
-            this.prevPressed = answer
-            this.currentDisplayString = answer
-            this.currentNumber = ''
-            this.opPressed = ''
-          }
-          break;
-        }
-    
-        }
-    }
-    
-     
-
-  }
-
-  setDisplayString(updatePara : string) { this.currentDisplayString = updatePara }
-
   clear() 
   {
-
-    this.currentDisplayString = '0'
-    this.currentValue  = 0
-    this.currentNumber = ""
-    this.prevPressed = ""
-    this.opPressed =""
-
+    this.currentNumber = '0'
+    this.prevPressed = ''
+    this.opPressed = ''
   }
-
+  
 
   ngOnInit(): void {
   }
